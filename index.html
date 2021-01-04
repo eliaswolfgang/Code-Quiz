@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Quiz | by eliaswolfgang</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <section class="container container-main">
+        <div class="row">
+            <div class="jumbotron">
+                <h1 class="display-4">Welcome!</h1>
+                <p class="lead">Select a difficulty below to begin the quiz:</p>
+                <hr class="my-4">
+                <p>Each quiz will be 10 questions. Every incorrect answer will deduct 5 seconds from the clock. Good luck!</p>
+                <a id="easyButton" class="btn btn-success btn-lg" href="#" role="button">Easy</a>
+                <a id="regularButton" class="btn btn-primary btn-lg" href="#" role="button">Normal</a>
+                <a id="hardButton" class="btn btn-danger btn-lg" href="#" role="button">Hard</a>
+                <div class="dropdown">
+                    <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      View High Scores
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <ul id="highScores">
+                      <li class="dropdown-item" id="highScore1"></li>
+                      <li class="dropdown-item" id="highScore2"></li>
+                      <li class="dropdown-item" id="highScore3"></li>
+                      </ul>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <section class="container" id="quizDiv">
+            <div class="row"><div id="question"></div></div>
+            <div class="row">
+              <div class="btn-group-vertical " role="group" aria-label="answers">
+                <h4>A:</h4><button type="button" id="btna" class="btn btn-transparent border-primary"><span id="answerA">test</span></button>
+                <h4>B:</h4><button type="button" id="btnb" class="btn btn-transparent border-primary"><span id="answerB">test</span></button>
+                <h4>C:</h4><button type="button" id="btnc" class="btn btn-transparent border-primary"><span id="answerC"></span></button>
+                <h4>D:</h4><button type="button" id="btnd" class="btn btn-transparent border-primary"><span id="answerD"></span></button>
+           </div>
+            </div>        
+        </section>    
+    </section>
+
+    <script src="./quiz.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    
+</body>
+
+</html>
