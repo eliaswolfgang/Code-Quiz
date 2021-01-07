@@ -5,18 +5,17 @@ $(document).ready(function () {
     var timeLeft = $("#timer");
     var timerValue = 90;
     var time;
-
+    var highScoresList = $("#scoresList")
     var questionContainer = $("#questionContainer");
     questionContainer.empty();
-
-        var questionRow = $("<div></div>", { class: "row" }).appendTo($(".container"));
-        var questionDisplay = $("<h4></h4>");
-        var answerRow = $("<div></div>", { class: "row" }).appendTo($(".container"));
-        var answersDisplay = $("<div></div>", { class: "btn-group-vertical" }).appendTo(answerRow);
-        var answerButtonA = $("<button></button>", { class: "btn btn-transparent border-primary", type: "button" });
-        var answerButtonB = $("<button></button>", { class: "btn btn-transparent border-primary", type: "button" });
-        var answerButtonC = $("<button></button>", { class: "btn btn-transparent border-primary", type: "button" });
-        var answerButtonD = $("<button></button>", { class: "btn btn-transparent border-primary", type: "button" });
+    var questionRow = $("<div></div>", { class: "row" }).appendTo($(".container"));
+    var questionDisplay = $("<h4></h4>");
+    var answerRow = $("<div></div>", { class: "row" }).appendTo($(".container"));
+    var answersDisplay = $("<div></div>", { class: "btn-group-vertical" }).appendTo(answerRow);
+    var answerButtonA = $("<button></button>", { class: "btn btn-transparent border-primary", type: "button" });
+    var answerButtonB = $("<button></button>", { class: "btn btn-transparent border-primary", type: "button" });
+    var answerButtonC = $("<button></button>", { class: "btn btn-transparent border-primary", type: "button" });
+    var answerButtonD = $("<button></button>", { class: "btn btn-transparent border-primary", type: "button" });
 
     function Question(q, answerA, answerB, answerC, answerD) {
         this.question = q;
@@ -88,17 +87,16 @@ $(document).ready(function () {
     };
 
     function showScores() {
+
         var htmlString = "";
-        var highScoresList = $("#scoresList");
         var highScores = JSON.parse(localStorage.getItem("scores")) ||[];
-        for(let i = 0; i < highScores.length; i++) {
-            if (highScoresList !== "") {
-                return;
-            } else {
-            htmlString += `<li>${highScores[i].user}: ${highScores[i].score}</li>`;
-            highScoresList.append(htmlString);
-            }
+        for(let i = 0; i < highScores.length; i++){
+            htmlString += `<p>${highScores[i].user}: ${highScores[i].score}</p>`
         }
+        highScoresList.html(htmlString);
+          console.log(htmlString);
+          console.log(highScoresList);
+          console.log(highScores);
           
     };
     
