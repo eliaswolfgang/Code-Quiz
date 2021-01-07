@@ -68,7 +68,7 @@ $(document).ready(function () {
      };
 
      function storeScore() {
-        questionContainer.empty()
+        questionContainer.empty();
         $("p").empty();
         timeLeft.html(`Your score is: ${timerValue}`);
         var user = prompt("Please enter your initials if you would like to save your score, or click Cancel to view your score without saving.");
@@ -89,12 +89,16 @@ $(document).ready(function () {
 
     function showScores() {
         var htmlString = "";
+        var highScoresList = $("#scoresList");
         var highScores = JSON.parse(localStorage.getItem("scores")) ||[];
-        for(let i = 0; i < highScores.length; i++){
-            htmlString += `<p>${highScores[i].user}: ${highScores[i].score}</p>`
+        for(let i = 0; i < highScores.length; i++) {
+            if (highScoresList !== "") {
+                return;
+            } else {
+            htmlString += `<li>${highScores[i].user}: ${highScores[i].score}</li>`;
+            highScoresList.append(htmlString);
+            }
         }
-          var scoresDiv = $("#scoresDiv");
-          scoresDiv.html(htmlString);
           
     };
     
