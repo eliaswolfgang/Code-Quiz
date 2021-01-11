@@ -17,29 +17,31 @@ $(document).ready(function () {
     var answerButtonC = $("<button></button>", { class: "btn btn-transparent border-primary", type: "button" });
     var answerButtonD = $("<button></button>", { class: "btn btn-transparent border-primary", type: "button" });
 
-    function Question(q, answerA, answerB, answerC, answerD) {
+    function Question(q, answerA, answerB, answerC, answerD, correct) {
         this.question = q;
         this.A = answerA;
         this.B = answerB;
         this.C = answerC;
         this.D = answerD;
+        this.correct = correct
 
     };
 
     const questions = [
-        new Question("What does HTML stand for?", "JavaScript", "Heavy Type Market Letters", "CSS", "Hyper-Text Markup Language"),
-        new Question("Which language is used for styling web pages?", "HTML", "JQuery", "CSS", "XML"),
-        new Question("The condition of an if/else statment is enclosed within:", "Python Script", "Parantheses", "Brackets", "HTML"),
-        new Question("What JavaScript syntax can be used to store the output of a function, the content of an array, or a document object?", "let", "const", "var", "All of the above"),
-        new Question("What method can be called in a JavaScript file to test JavaScript functions, variables, and objects, all utilizing the browser window?", "console.log()", "getElementById", "Cmnd+A", "list")
+        new Question("testq", "testa","testb","testc","testd", "testa"),
+        new Question("What does HTML stand for?", "JavaScript", "Heavy Type Market Letters", "CSS", "Hyper-Text Markup Language", "Hyper-Text Markup Language"),
+        new Question("Which language is used for styling web pages?", "HTML", "JQuery", "CSS", "XML", "CSS"),
+        new Question("The condition of an if/else statment is enclosed within:", "Python Script", "Parantheses", "Brackets", "HTML", "Parentheses"),
+        new Question("What JavaScript syntax can be used to store the output of a function, the content of an array, or a document object?", "let", "const", "var", "All of the above", "All of the above"),
+        new Question("What method can be called in a JavaScript file to test JavaScript functions, variables, and objects, all utilizing the browser window?", "console.log()", "getElementById", "Cmnd+A", "list", "console.log()")
     ];
-    const correctAnswers = [
-        questions[0].D,
-        questions[1].C,
-        questions[2].B,
-        questions[3].D,
-        questions[4].A,
-    ];
+    // const correctAnswers = [
+    //     questions[0].D,
+    //     questions[1].C,
+    //     questions[2].B,
+    //     questions[3].D,
+    //     questions[4].A,
+    // ];
 
     function countDown() {
         timeLeft.html(`${timerValue}`);  
@@ -62,7 +64,6 @@ $(document).ready(function () {
         answerButtonD.text(questions[currentIndex].D).appendTo(answersDisplay);
         questionContainer.append(questionRow);
         questionContainer.append(answersDisplay);
-        currentIndex++; 
         }
      };
 
@@ -107,11 +108,13 @@ $(document).ready(function () {
     };
 
     $(document).on("click",".btn-transparent",function(){
-        const currentCorrectAnswer = correctAnswers[currentIndex-1];
+        console.log(questions[currentIndex].correct)
         const clickedAnswer = $(this).text();
-            if (clickedAnswer !== currentCorrectAnswer) {
+        console.log(clickedAnswer);
+            if (clickedAnswer !== questions[currentIndex].correct) {
                 timerValue -= 5; 
             }
+            currentIndex++; 
             generateQuestion();
         });
 
