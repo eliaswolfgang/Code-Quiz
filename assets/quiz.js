@@ -85,21 +85,19 @@ $(document).ready(function () {
 
   function countDown() {
     timeLeft.html(`${timerValue}`);
-    timeLeft.html(`${timerValue--} seconds left`);
-    if (timerValue < 0) {
+    timeLeft.html(`${timerValue} seconds left`);
+    if (timerValue === 0) {
       clearInterval(time);
       storeScore();
     }
+    timerValue--;
   }
 
   function generateQuestion() {
     $('#scoresList').empty();
     $('#highScores').attr('disabled', 'true');
     $('#clearScores').attr('disabled', 'true');
-    if (currentIndex === questions.length) {
-      clearInterval(time);
-      storeScore();
-    } else {
+    if (questions[currentIndex]) {
       questionDisplay
         .text(questions[currentIndex].question)
         .appendTo(questionRow);
@@ -109,14 +107,13 @@ $(document).ready(function () {
       answerButtonD.text(questions[currentIndex].D).appendTo(answersDisplay);
       questionContainer.append(questionRow);
       questionContainer.append(answersDisplay);
+    } else {
+      clearInterval(time);
+      storeScore();
     }
   }
 
-  function storeScore() {
-    $('#prevAnswersContainer').empty();
-    questionContainer.empty();
-    $('p').empty();
-    timeLeft.html(`Your score is: ${timerValue}`);
+  function getUser() {
     var user = prompt(
       'Please enter your initials if you would like to save your score, or click Cancel to view your score without saving.'
     );
@@ -132,8 +129,16 @@ $(document).ready(function () {
       highScores.push(scoreObj);
       localStorage.setItem('scores', JSON.stringify(highScores));
     }
+  }
+
+  function storeScore() {
+    $('#prevAnswersContainer').empty();
+    questionContainer.empty();
+    $('p').empty();
+    timeLeft.html(`Your score is: ${timerValue}`);
     $('#highScores').removeAttr('disabled');
     $('#clearScores').removeAttr('disabled');
+    getUser();
   }
 
   function showScores() {
@@ -163,7 +168,7 @@ $(document).ready(function () {
     // console.log(questions[currentIndex].correct);
     const clickedAnswer = $(this).text();
     // console.log(clickedAnswer);
-    if (clickedAnswer !== questions[currentIndex].correct) {
+    if (clickedAnswer !== questions[currentIndex]?.correct) {
       htmlString = $(
         `<p class="border border-danger rounded-top mx-5 px-2 py-3">Question ${
           currentIndex + 1
